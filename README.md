@@ -13,4 +13,18 @@ Allows players to crush other players
 ### Installation
 
 * Download latest [release](https://github.com/dronelektron/player-crush/releases)
-* Extract `plugins` folder to `addons/sourcemod` folder of your server
+* Extract `plugins` and `translations` folders to `addons/sourcemod` folder of your server
+
+### API
+
+Enable crush mode for the `client`
+
+```sourcepawn
+native void PlayerCrush_Enable(int client);
+```
+
+Disable crush mode for the `client`
+
+```sourcepawn
+native void PlayerCrush_Disable(int client);
+```

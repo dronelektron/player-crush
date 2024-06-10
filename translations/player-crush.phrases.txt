@@ -1,0 +1,13 @@
+"Phrases"
+{
+    "Prefix colored"
+    {
+        "en"    "FFA500[Player crush] "
+    }
+
+    "Player crushed"
+    {
+        "#format"   "{1:N},{2:N}"
+        "en"    "Player F5DEB3{1} crushed F5DEB3{2}"
+    }
+}
