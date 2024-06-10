@@ -13,4 +13,4 @@ Allows players to crush other players
 ### Installation
 
 * Download latest [release](https://github.com/dronelektron/player-crush/releases)
-* Extract `plugins` folder to `addons/sourcemod` folder of your server
+* Extract `plugins` and `translations` folders to `addons/sourcemod` folder of your server

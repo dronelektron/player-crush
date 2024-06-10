@@ -1,0 +1,7 @@
+"Phrases"
+{
+    "Player crushed"
+    {
+        "ru"    "Игрок F5DEB3{1} раздавил F5DEB3{2}"
+    }
+}
