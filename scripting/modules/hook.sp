@@ -1,9 +1,9 @@
-void Hook_StartTouchPost(int client) {
-    SDKHook(client, SDKHook_StartTouchPost, Hook_OnStartTouchPost);
+void Hook_EnableStartTouchPost(int client) {
+    SDKHook(client, SDKHook_StartTouchPost, UseCase_StartTouch);
 }
 
-public void Hook_OnStartTouchPost(int entity, int other) {
-    UseCase_StartTouch(entity, other);
+void Hook_DisableStartTouchPost(int client) {
+    SDKUnhook(client, SDKHook_StartTouchPost, UseCase_StartTouch);
 }
 
 void Hook_TakeDamage(int client, int other) {

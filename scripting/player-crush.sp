@@ -9,6 +9,7 @@
 
 #include "modules/hook.sp"
 #include "modules/message.sp"
+#include "modules/native.sp"
 #include "modules/sound.sp"
 #include "modules/use-case.sp"
 
@@ -20,14 +21,16 @@ public Plugin myinfo = {
     url = "https://github.com/dronelektron/player-crush"
 };
 
+public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMax) {
+    Native_Create();
+
+    return APLRes_Success;
+}
+
 public void OnPluginStart() {
     LoadTranslations("player-crush.phrases");
 }
 
 public void OnMapStart() {
     Sound_Precache();
-}
-
-public void OnClientPutInServer(int client) {
-    Hook_StartTouchPost(client);
 }
