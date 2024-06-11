@@ -40,9 +40,15 @@ static bool IsPlayerCrusher(int client, int other) {
     AddVectors(otherPosition, otherMinBounds, otherMinBounds);
     AddVectors(otherPosition, otherMaxBounds, otherMaxBounds);
 
-    bool isAbove = clientPosition[Z] > otherPosition[Z];
-    bool intersectsX = otherMinBounds[X] < clientMaxBounds[X] && otherMaxBounds[X] > clientMinBounds[X];
-    bool intersectsY = otherMinBounds[Y] < clientMaxBounds[Y] && otherMaxBounds[Y] > clientMinBounds[Y];
+    float otherHeight = (otherMaxBounds[Z] - otherMinBounds[Z]) * HEIGHT_PERCENT;
+    float deltaZ = clientPosition[Z] - otherPosition[Z];
+    bool isAbove = deltaZ > otherHeight;
+    bool intersectsX = Intersects(clientMinBounds, clientMaxBounds, otherMinBounds, otherMaxBounds, X);
+    bool intersectsY = Intersects(clientMinBounds, clientMaxBounds, otherMinBounds, otherMaxBounds, Y);
 
     return isAbove && intersectsX && intersectsY;
+}
+
+static bool Intersects(const float minA[3], const float maxA[3], const float minB[3], const float maxB[3], int axis) {
+    return minB[axis] < maxA[axis] && maxB[axis] > minA[axis];
 }

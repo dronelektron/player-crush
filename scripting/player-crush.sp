@@ -6,6 +6,7 @@
 #include "player-crush/math"
 #include "player-crush/message"
 #include "player-crush/sound"
+#include "player-crush/use-case"
 
 #include "modules/hook.sp"
 #include "modules/message.sp"
@@ -17,7 +18,7 @@ public Plugin myinfo = {
     name = "Player crush",
     author = "Dron-elektron",
     description = "Allows players to crush other players",
-    version = "0.1.0",
+    version = "1.0.0",
     url = "https://github.com/dronelektron/player-crush"
 };
 

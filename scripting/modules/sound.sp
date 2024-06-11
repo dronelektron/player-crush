@@ -2,7 +2,9 @@ static char g_crushSounds[][] = {
     "npc/barnacle/barnacle_crunch2.wav",
     "npc/barnacle/barnacle_crunch3.wav",
     "npc/barnacle/neck_snap1.wav",
-    "npc/barnacle/neck_snap2.wav"
+    "npc/barnacle/neck_snap2.wav",
+    "physics/body/body_medium_break3.wav",
+    "physics/body/body_medium_break4.wav"
 }
 
 void Sound_Precache() {
