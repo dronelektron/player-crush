@@ -6,6 +6,7 @@
 #include "player-crush/math"
 #include "player-crush/message"
 #include "player-crush/sound"
+#include "player-crush/use-case"
 
 #include "modules/hook.sp"
 #include "modules/message.sp"
