@@ -1,8 +1,4 @@
 void UseCase_StartTouch(int client, int target) {
-    if (client == WORLD) {
-        return;
-    }
-
     if (IsClient(target) && IsOnGround(target) && IsPlayerCrusher(client, target)) {
         Sound_RandomCrush(target);
         Hook_TakeDamage(client, target);
