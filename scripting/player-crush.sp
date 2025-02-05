@@ -2,14 +2,14 @@
 #include <sdktools>
 #include <sdkhooks>
 
-#include "player-crush/hook"
 #include "player-crush/math"
 #include "player-crush/message"
+#include "player-crush/sdk-hook"
 #include "player-crush/sound"
 
-#include "modules/hook.sp"
 #include "modules/message.sp"
 #include "modules/native.sp"
+#include "modules/sdk-hook.sp"
 #include "modules/sound.sp"
 #include "modules/use-case.sp"
 

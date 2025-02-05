@@ -8,7 +8,7 @@ void Native_Create() {
 any Native_CrushEnable(Handle plugin, int numParams) {
     int client = GetNativeCell(1);
 
-    Hook_EnableStartTouchPost(client);
+    SdkHook_EnableStartTouchPost(client);
 
     return VOID;
 }
@@ -16,7 +16,7 @@ any Native_CrushEnable(Handle plugin, int numParams) {
 any Native_CrushDisable(Handle plugin, int numParams) {
     int client = GetNativeCell(1);
 
-    Hook_DisableStartTouchPost(client);
+    SdkHook_DisableStartTouchPost(client);
 
     return VOID;
 }
