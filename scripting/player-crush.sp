@@ -6,7 +6,6 @@
 #include "player-crush/math"
 #include "player-crush/message"
 #include "player-crush/sound"
-#include "player-crush/use-case"
 
 #include "modules/hook.sp"
 #include "modules/message.sp"
@@ -34,4 +33,8 @@ public void OnPluginStart() {
 
 public void OnMapStart() {
     Sound_Precache();
+}
+
+public void OnClientPutInServer(int client) {
+    Hook_EnableStartTouchPost(client);
 }
