@@ -4,9 +4,11 @@
 
 #include "player-crush/math"
 #include "player-crush/message"
+#include "player-crush/native"
 #include "player-crush/sdk-hook"
 #include "player-crush/sound"
 
+#include "modules/client.sp"
 #include "modules/message.sp"
 #include "modules/native.sp"
 #include "modules/sdk-hook.sp"
@@ -33,4 +35,8 @@ public void OnPluginStart() {
 
 public void OnMapStart() {
     Sound_Precache();
+}
+
+public void OnClientConnected(int client) {
+    Client_Reset(client);
 }

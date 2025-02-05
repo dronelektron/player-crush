@@ -1,4 +1,4 @@
-void UseCase_StartTouch(int client, int target) {
+void UseCase_OnStartTouchPost(int client, int target) {
     if (IsClient(target) && IsOnGround(target) && IsPlayerCrusher(client, target)) {
         Sound_RandomCrush(target);
         SdkHook_TakeDamage(client, target);

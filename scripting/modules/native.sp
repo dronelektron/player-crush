@@ -1,5 +1,3 @@
-static const int VOID = 0;
-
 void Native_Create() {
     CreateNative("PlayerCrush_Enable", Native_CrushEnable);
     CreateNative("PlayerCrush_Disable", Native_CrushDisable);
@@ -8,7 +6,7 @@ void Native_Create() {
 any Native_CrushEnable(Handle plugin, int numParams) {
     int client = GetNativeCell(1);
 
-    SdkHook_EnableStartTouchPost(client);
+    SdkHook_StartTouchPost_Toggle(client, ENABLED_YES);
 
     return VOID;
 }
@@ -16,7 +14,7 @@ any Native_CrushEnable(Handle plugin, int numParams) {
 any Native_CrushDisable(Handle plugin, int numParams) {
     int client = GetNativeCell(1);
 
-    SdkHook_DisableStartTouchPost(client);
+    SdkHook_StartTouchPost_Toggle(client, ENABLED_NO);
 
     return VOID;
 }
