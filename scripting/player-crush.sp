@@ -34,7 +34,3 @@ public void OnPluginStart() {
 public void OnMapStart() {
     Sound_Precache();
 }
-
-public void OnClientPutInServer(int client) {
-    Hook_EnableStartTouchPost(client);
-}
