@@ -2,15 +2,16 @@
 #include <sdktools>
 #include <sdkhooks>
 
-#include "player-crush/hook"
 #include "player-crush/math"
 #include "player-crush/message"
+#include "player-crush/native"
+#include "player-crush/sdk-hook"
 #include "player-crush/sound"
-#include "player-crush/use-case"
 
-#include "modules/hook.sp"
+#include "modules/client.sp"
 #include "modules/message.sp"
 #include "modules/native.sp"
+#include "modules/sdk-hook.sp"
 #include "modules/sound.sp"
 #include "modules/use-case.sp"
 
@@ -18,7 +19,7 @@ public Plugin myinfo = {
     name = "Player crush",
     author = "Dron-elektron",
     description = "Allows players to crush other players",
-    version = "1.0.1",
+    version = "1.0.2",
     url = "https://github.com/dronelektron/player-crush"
 };
 
@@ -34,4 +35,8 @@ public void OnPluginStart() {
 
 public void OnMapStart() {
     Sound_Precache();
+}
+
+public void OnClientConnected(int client) {
+    Client_Reset(client);
 }

@@ -1,12 +1,8 @@
-void UseCase_StartTouch(int client, int other) {
-    if (client == WORLD) {
-        return;
-    }
-
-    if (IsClient(other) && IsOnGround(other) && IsPlayerCrusher(client, other)) {
-        Sound_RandomCrush(other);
-        Hook_TakeDamage(client, other);
-        Message_PlayerCrushed(client, other);
+void UseCase_OnStartTouchPost(int client, int target) {
+    if (IsClient(target) && IsOnGround(target) && IsPlayerCrusher(client, target)) {
+        Sound_RandomCrush(target);
+        SdkHook_TakeDamage(client, target);
+        Message_PlayerCrushed(client, target);
     }
 }
 
@@ -20,35 +16,26 @@ static bool IsOnGround(int client) {
     return groundEntity == WORLD;
 }
 
-static bool IsPlayerCrusher(int client, int other) {
+static bool IsPlayerCrusher(int client, int target) {
+    float clientVelocity[3];
+
+    GetEntPropVector(client, Prop_Data, "m_vecVelocity", clientVelocity);
+
+    if (clientVelocity[Z] >= 0.0) {
+        return false;
+    }
+
     float clientPosition[3];
-    float clientMinBounds[3];
-    float clientMaxBounds[3];
-    float otherPosition[3];
-    float otherMinBounds[3];
-    float otherMaxBounds[3];
+    float clientMins[3];
+    float targetPosition[3];
+    float targetMaxs[3];
 
     GetClientAbsOrigin(client, clientPosition);
-    GetClientMins(client, clientMinBounds);
-    GetClientMaxs(client, clientMaxBounds);
-    AddVectors(clientPosition, clientMinBounds, clientMinBounds);
-    AddVectors(clientPosition, clientMaxBounds, clientMaxBounds);
+    GetClientMins(client, clientMins);
+    AddVectors(clientPosition, clientMins, clientMins);
+    GetClientAbsOrigin(target, targetPosition);
+    GetClientMaxs(target, targetMaxs);
+    AddVectors(targetPosition, targetMaxs, targetMaxs);
 
-    GetClientAbsOrigin(other, otherPosition);
-    GetClientMins(other, otherMinBounds);
-    GetClientMaxs(other, otherMaxBounds);
-    AddVectors(otherPosition, otherMinBounds, otherMinBounds);
-    AddVectors(otherPosition, otherMaxBounds, otherMaxBounds);
-
-    float otherHeight = (otherMaxBounds[Z] - otherMinBounds[Z]) * HEIGHT_PERCENT;
-    float deltaZ = clientPosition[Z] - otherPosition[Z];
-    bool isAbove = deltaZ > otherHeight;
-    bool intersectsX = Intersects(clientMinBounds, clientMaxBounds, otherMinBounds, otherMaxBounds, X);
-    bool intersectsY = Intersects(clientMinBounds, clientMaxBounds, otherMinBounds, otherMaxBounds, Y);
-
-    return isAbove && intersectsX && intersectsY;
-}
-
-static bool Intersects(const float minA[3], const float maxA[3], const float minB[3], const float maxB[3], int axis) {
-    return minB[axis] < maxA[axis] && maxB[axis] > minA[axis];
+    return clientMins[Z] >= targetMaxs[Z];
 }
