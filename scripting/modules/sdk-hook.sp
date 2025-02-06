@@ -1,6 +1,6 @@
-void SdkHook_StartTouchPost_Toggle(int client, bool enabled) {
+bool SdkHook_StartTouchPost_Toggle(int client, bool enabled) {
     if (Client_IsStartTouchEnabled(client) == enabled) {
-        return;
+        return false;
     }
 
     Client_SetStartTouchEnabled(client, enabled);
@@ -10,6 +10,8 @@ void SdkHook_StartTouchPost_Toggle(int client, bool enabled) {
     } else {
         SDKUnhook(client, SDKHook_StartTouchPost, UseCase_OnStartTouchPost);
     }
+
+    return true;
 }
 
 void SdkHook_TakeDamage(int client, int other) {

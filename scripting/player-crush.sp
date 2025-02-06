@@ -2,6 +2,7 @@
 #include <sdktools>
 #include <sdkhooks>
 
+#include "player-crush/console-command"
 #include "player-crush/math"
 #include "player-crush/message"
 #include "player-crush/native"
@@ -9,6 +10,7 @@
 #include "player-crush/sound"
 
 #include "modules/client.sp"
+#include "modules/console-command.sp"
 #include "modules/message.sp"
 #include "modules/native.sp"
 #include "modules/sdk-hook.sp"
@@ -30,7 +32,13 @@ public APLRes AskPluginLoad2(Handle plugin, bool late, char[] error, int errorMa
 }
 
 public void OnPluginStart() {
+    Command_Create();
+    LoadTranslations("common.phrases");
     LoadTranslations("player-crush.phrases");
+
+    if (LibraryExists("multi-target-filters")) {
+        LoadTranslations("multi-target-filters.phrases");
+    }
 }
 
 public void OnMapStart() {
