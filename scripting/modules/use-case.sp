@@ -1,3 +1,23 @@
+bool UseCase_CrushMode_Enable(int client, int target) {
+    bool enabled = SdkHook_StartTouchPost_Toggle(target, ENABLED_YES);
+
+    if (enabled) {
+        MessageLog_CrushModeEnabled(client, target);
+    }
+
+    return enabled;
+}
+
+bool UseCase_CrushMode_Disable(int client, int target) {
+    bool disabled = SdkHook_StartTouchPost_Toggle(target, ENABLED_NO);
+
+    if (disabled) {
+        MessageLog_CrushModeDisabled(client, target);
+    }
+
+    return disabled;
+}
+
 void UseCase_OnStartTouchPost(int client, int target) {
     if (IsClient(target) && IsOnGround(target) && IsPlayerCrusher(client, target)) {
         Sound_RandomCrush(target);
