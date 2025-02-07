@@ -10,14 +10,47 @@ static char g_crushSounds[][] = {
     "physics/body/body_medium_break4.wav"
 }
 
+static int g_indices[sizeof(g_crushSounds)];
+static int g_currentIndex;
+
 void Sound_Precache() {
     for (int i = 0; i < sizeof(g_crushSounds); i++) {
         PrecacheSound(g_crushSounds[i], PRELOAD_YES);
+
+        g_indices[i] = i;
     }
+
+    g_currentIndex = 0;
 }
 
 void Sound_RandomCrush(int client) {
-    int index = GetRandomInt(0, sizeof(g_crushSounds) - 1);
+    int index = GetRandomIndex();
 
     EmitSoundToAll(g_crushSounds[index], client);
+}
+
+static int GetRandomIndex() {
+    int amount = sizeof(g_crushSounds);
+    int current = g_currentIndex;
+    int start = current + 1;
+
+    if (start < amount) {
+        int end = amount - 1;
+        int pivot = GetRandomInt(start, end);
+
+        SwapIndices(current, pivot);
+
+        g_currentIndex++;
+    } else {
+        g_currentIndex = 0;
+    }
+
+    return g_indices[current];
+}
+
+static void SwapIndices(int index1, int index2) {
+    int temp = g_indices[index1];
+
+    g_indices[index1] = g_indices[index2];
+    g_indices[index2] = temp;
 }

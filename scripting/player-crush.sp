@@ -21,7 +21,7 @@ public Plugin myinfo = {
     name = "Player crush",
     author = "Dron-elektron",
     description = "Allows players to crush other players",
-    version = "1.1.1",
+    version = "1.1.2",
     url = "https://github.com/dronelektron/player-crush"
 };
 
