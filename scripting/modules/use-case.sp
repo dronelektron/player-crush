@@ -31,9 +31,7 @@ static bool IsClient(int entity) {
 }
 
 static bool IsOnGround(int client) {
-    int groundEntity = GetEntPropEnt(client, Prop_Send, "m_hGroundEntity");
-
-    return groundEntity == WORLD;
+    return (GetEntityFlags(client) & FL_ONGROUND) == FL_ONGROUND;
 }
 
 static bool IsPlayerCrusher(int client, int target) {
