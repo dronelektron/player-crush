@@ -44,7 +44,7 @@ static bool IsPlayerCrusher(int client, int target) {
 
     GetEntPropVector(client, Prop_Data, "m_vecVelocity", clientVelocity);
 
-    if (clientVelocity[Z] >= 0.0) {
+    if (clientVelocity[Z] > 0.0) {
         return false;
     }
 
